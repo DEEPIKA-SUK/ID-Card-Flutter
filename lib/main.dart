@@ -4,8 +4,15 @@ void main() => runApp(MaterialApp(
   home: Home(),
 ));
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  int counter=0;
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
@@ -85,6 +92,34 @@ class Home extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30.0,),
+            Container(
+              child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Hello count',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18.0,
+                          letterSpacing: 2.0,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10.0),
+                    Text(
+                      '$counter',
+                      style: TextStyle(
+                        color: Colors.pinkAccent[200],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                  ]
+              ),
+            ),
+            SizedBox(height: 30.0,),
             Row(
               children: <Widget>[
                 Icon(
@@ -104,7 +139,11 @@ class Home extends StatelessWidget {
             ),
             SizedBox(height: 30.0,),
             Center(
-              child: ElevatedButton(onPressed: (){}, child: Text(
+              child: ElevatedButton(onPressed: (){
+                setState((){
+                  counter=counter+1;
+                });
+              }, child: Text(
                 'Hello!',
                 style: TextStyle(
                   color: Colors.grey[400],
